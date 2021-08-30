@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
-import IsLoadingAndError from './IsLoadingAndError';
 import Footer from './Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,12 +10,30 @@ import {
 
 class App extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    }
+  }
+
+  loginHandler = (user) => {
+    this.setState({
+      user,
+    })
+  }
+
+  logoutHandler = () => {
+    this.setState({
+      user: null,
+    })
+  }
+
   render() {
-    console.log('app', this.props);
     return (
       <>
         <Router>
-          <Header />
+          <Header user={this.state.user} onLogout={this.logoutHandler} />
           <Switch>
             <Route exact path="/">
               {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
@@ -25,7 +43,7 @@ class App extends React.Component {
           <Footer />
         </Router>
       </>
-    );
+    )
   }
 }
 
