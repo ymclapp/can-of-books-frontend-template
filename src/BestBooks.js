@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
 
@@ -12,28 +11,7 @@ class BestBooks extends React.Component {
     }
   }
 
-  componentDidMount = async () => {
-
-    try {
-
-      const config = {
-        params: { email: this.props.user.email },
-        method: 'get',
-        baseURL: process.env.REACT_APP_SERVER,
-        url: '/books'
-      };
-
-
-      const response = await axios(config);
-
-      this.setState({ books: response.data });
-
-    } catch (err) {
-      console.error(err);
-    }
-
-  }
-
+  /* TODO: Make a GET request to your API to fetch books for the logged in user  */
 
   render() {
     return (
